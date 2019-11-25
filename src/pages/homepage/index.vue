@@ -1,5 +1,17 @@
 <template>
   <div>
+    <swiper
+    :indicator-dots="indicatorDots"
+    :autoplay="autoplay"
+    :interval="interval"
+    :duration="duration"
+    >
+    <block v-for="img in imgUrls" :key="img">
+      <swiper-item>
+        <image :src="img" style="width:100%" />
+      </swiper-item>
+    </block>
+    </swiper>
   <i-grid i-class="no-border">
     <i-grid-item @click="goType(grid)" v-for="grid in grids" :key="grid" i-class="no-border">
         <i-grid-icon>
@@ -37,7 +49,16 @@ export default {
        {name:"攻略2",keyWord:"关键字2",image:"图片1",content:"内容2"},
        {name:"攻略3",keyWord:"关键字3",image:"图片1",content:"内容3"},
        {name:"攻略4",keyWord:"关键字4",image:"图片1",content:"内容4"},
-     ]
+     ],
+     imgUrls:[
+       'https://i.loli.net/2017/08/21/599a521472424.jpg',
+       'https://i.loli.net/2017/08/21/599a521472424.jpg',
+       'https://i.loli.net/2017/08/21/599a521472424.jpg',
+     ],
+     indicatorDots:false,
+     autoplay:false,
+     interval:5000,
+     duration:1000
     }
   },
 
