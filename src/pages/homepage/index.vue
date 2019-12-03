@@ -8,7 +8,7 @@
     >
     <block v-for="img in imgUrls" :key="img">
       <swiper-item>
-        <image :src="img" style="width:100%" />
+        <image :src="img" style="width:1000px height:1000px" />
       </swiper-item>
     </block>
     </swiper>
@@ -39,7 +39,7 @@ export default {
     return {
      title_name:"热门攻略",
      grids:[
-       { title:"线路",image:"/static/images/1.png"},
+       { title:"地图",image:"/static/images/1.png"},
        { title:"酒店",image:"/static/images/2.png"},
        { title:"景点",image:"/static/images/3.png"},
        { title:"攻略",image:"/static/images/4.png"},
@@ -51,9 +51,9 @@ export default {
        {name:"攻略4",keyWord:"关键字4",image:"图片1",content:"内容4"},
      ],
      imgUrls:[
-       'https://i.loli.net/2017/08/21/599a521472424.jpg',
-       'https://i.loli.net/2017/08/21/599a521472424.jpg',
-       'https://i.loli.net/2017/08/21/599a521472424.jpg',
+       '/static/images/wuhan1.jpg',
+       '/static/images/xian1.jpg',
+        '/static/images/chongqing1.jpg',
      ],
      indicatorDots:false,
      autoplay:false,
@@ -66,7 +66,7 @@ export default {
   methods: {
    goType(type){
      console.log(type)
-     let url='../list/main?type=' + type
+     let url='../list/main?type=' + type.title
      mpvue.navigateTo({ url })
    }
   },
