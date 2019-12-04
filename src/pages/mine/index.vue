@@ -6,7 +6,7 @@
     </view>
     <open-data type="userNickName"></open-data>
     </view>
-  <block v-for=" item in userListInfo" :key="item">
+  <block @click="goType(item)" v-for=" item in userListInfo" :key="item">
     <view class="b2">
       <view class="b3">
         <image :src="item.icon"></image>
@@ -33,16 +33,21 @@ export default {
   }
   },
 
-  onLoad:function(){
-  var that=this
-  app.userListInfo(function(userInfo){
-    that.setaData({
-      userInfo:userInfo
-    })
-  })
-  },
+  // onLoad:function(){
+  // var that=this
+  // app.userListInfo(function(userInfo){
+  //   that.setaData({
+  //     userInfo:userInfo
+  //   })
+  // })
+  // },
 
   methods: {
+    goType(type){
+     console.log(type)
+     let url='../list/main?type=' + type.title
+     mpvue.navigateTo({ url })
+   }
    
   },
 
