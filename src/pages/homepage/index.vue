@@ -53,7 +53,7 @@ export default {
      imgUrls:[
        '/static/images/wuhan1.jpg',
        '/static/images/xian1.jpg',
-        '/static/images/chongqing1.jpg',
+       '/static/images/chongqing1.jpg',
      ],
      indicatorDots:false,
      autoplay:false,
