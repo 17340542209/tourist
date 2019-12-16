@@ -33,22 +33,12 @@ export default {
   }
   },
 
-  // onLoad:function(){
-  // var that=this
-  // app.userListInfo(function(userInfo){
-  //   that.setaData({
-  //     userInfo:userInfo
-  //   })
-  // })
-  // },
-
   methods: {
     goType(type){
      console.log(type)
      let url='../list/main?type=' + type.title
      mpvue.navigateTo({ url })
    }
-   
   },
 
   created () {

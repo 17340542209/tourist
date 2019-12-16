@@ -22,19 +22,34 @@
   </i-grid>
 
   <i-panel :title="title_name">
-    <view style="padding: 15px;">
-    <i-card v-for="item in top" :key="item" i-class="split" :title="item.name" :thumb="item.image">
+    <block v-for=" item in top" :key="item">
+    <i-card i-class="split" :title="item.name" :thumb="item.image">
       <view slot="footer">{{item.keyWord}}</view>
       <view slot="content">{{item.content}}</view>
     </i-card>
-   </view>
-</i-panel>
+    <view class="tool">
+  <view class="tool-item" catchtap='onUpTop' data-post-id="post.postId">
+    <image src="/static/images/dianzan.png"></image>
+    <text>{{post.upNum}}</text>
+  </view>
+  <view class="tool-item comment" catchtap='onCommentTap' data-post-id="post.postId">
+    <image src="/static/images/pinlun.png"></image>
+    <text>{{post.commentNum}}</text>
+  </view>
+  <view class="tool-item" @click='on' data-post-id="post.postId">
+   <image v-show="post.collectionStatus" src="/static/images/collect.png"></image>
+   <image v-show="post.collectionStatus2" src="/static/images/_collect.png"></image>
+    <text>{{post.upNum}}</text>
+  </view>
+</view>
+  </block>
+  </i-panel>
   </div>
 </template>
 
 <script>
 
-
+const { $Toast } = require('../../../static/dist/toast/index');
 export default {
   data () {
     return {
@@ -58,26 +73,99 @@ export default {
      indicatorDots:false,
      autoplay:false,
      interval:5000,
-     duration:1000
+     duration:1000,
+     post: {
+       collectionStatus: true,
+       collectionStatus2: false,
+     }
     }
   },
-
-
   methods: {
-   goType(type){
+   goType(type) {
      console.log(type)
      let url='../list/main?type=' + type.title
      mpvue.navigateTo({ url })
-   }
+   },
+   //更新本地的点赞、评论信息、收藏、阅读量
+updatePostData(category){
+    var itemData = this.getPostItemById(),
+     postData = itemData.data,
+    allPostData = this.getAllPostData();
+    switch(category){
+        case 'collect':
+          //处理收藏
+          if(!postData.collectionStatus){
+            //如果当前状态是未收藏
+            postData.collectionNum++;
+            postData.collectionStatus = true;
+          }else{
+            //如果当前状态是已收藏
+            postData.collectionNum--;
+            postData.collectionStatus = false;
+          }
+          break;
+        case 'up':
+          if(!postData.upStatus){
+            postData.upNum++;
+            postData.upStatus = true;
+            }else{
+              postData.upNum--;
+              postData.upStatus = false;
+            }
+            break;
+          
+        default:break;
+    }
+    //更新缓存数据库  
+    allPostData[itemData.index] = postData;
+    this.execSetStorageSync(allPostData);
+    return postData;
+},   
+    collect(){
+      return this.updatePostData('collect');
+    },
+
+  on() {
+      this.post.collectionStatus = !this.post.collectionStatus;
+      this.post.collectionStatus2 = !this.post.collectionStatus2;
+     
+      this.onLoad();
   },
 
-  created () {
   
-}
+  onLoad() {
+      wx.showToast({
+     title:newData.collectionStatus?"收藏成功":"收藏取消",
+    //  duration:1000,
+    //  icon:"sucess",
+     make:true
+     })
+  }
+  }
 }
 </script>
 
 <style scoped>
+.tool{
+  height: 64rpx;
+  text-align: right;
+  line-height: 64rpx;
+  margin: 20rpx 28rpx 20rpx 0;
+}
+.tool-item{
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 30rpx;
+}
+.tool-item image{
+  height: 30rpx;
+  width: 30rpx;
+  vertical-align: -3px;
+  margin-right: 10rpx;
+}
+.comment image{
+  transform: scale(.85);
+}
 div >>> .no-border {
   border-width: 0pt;
 }
