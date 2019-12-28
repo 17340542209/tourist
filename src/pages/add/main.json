@@ -8,6 +8,7 @@
     "i-grid-label": "../../../static/dist/grid-label/index",
     "i-panel": "../../../static/dist/panel/index",
     "i-card": "../../../static/dist/card/index",
-    "i-button": "../../../static/dist/button/index"
-}
+    "i-button": "../../../static/dist/button/index",
+    "i-toast": "../../../static/dist/toast/index"
+    }
 }

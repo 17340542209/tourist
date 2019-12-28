@@ -3,7 +3,8 @@
     "pages/homepage/main",
     "pages/list/main",
     "pages/add/main",
-    "pages/mine/main"
+    "pages/mine/main",
+    "pages/collect/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

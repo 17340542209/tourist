@@ -153,6 +153,15 @@ export default {
         $Toast.hide();
     }, 5000);
   },
+  updates(name){
+      this.$router.push({
+          path:'/collect',
+          name:'collect',
+            params:{
+            name : name,
+          }
+      })
+    }
 }
 }
 </script>

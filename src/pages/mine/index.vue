@@ -6,15 +6,15 @@
     </view>
     <open-data type="userNickName"></open-data>
     </view>
-  <block @click="goType(item)" v-for=" item in userListInfo" :key="item">
-    <view class="b2">
-      <view class="b3">
-        <image :src="item.icon"></image>
-      </view>
-    <view class="b4">
-      <view>{{item.text}}</view>
-    </view>
-    <view class="listimage" style='background-image:url(/static/images/jiantou.png);'></view>
+  <block  v-for=" item in userListInfo" :key="item">
+    <view class="b2" @click="goType(item)">
+        <view class="b3" >
+          <image :src="item.image"></image>
+        </view>
+        <view class="b4">
+          <view>{{item.text}}</view>
+        </view>
+        <view class="listimage" style='background-image:url(/static/images/jiantou.png);'></view>
     </view>
   </block>
   </div>
@@ -25,20 +25,21 @@
 export default {
   data () {
     return {
-  userListInfo:[
-    {icon:"/static/images/biji.png",text:"我的笔记"},
-    {icon:"/static/images/zan.png",text:"我的赞"},
-    {icon:"/static/images/shoucang.png",text:"我的收藏"},
-  ]
-  }
+      userListInfo:[
+        {image:"/static/images/biji.png",text:"我的笔记",zhuan:"file",url: "../collect/main"},
+        {image:"/static/images/zan.png",text:"我的赞",zhuan:"like"},
+        {image:"/static/images/shoucang.png",text:"我的收藏",zhuan:"collect"},
+        ]
+   }
   },
 
   methods: {
-    goType(type){
-     console.log(type)
-     let url='../list/main?type=' + type.title
-     mpvue.navigateTo({ url })
-   }
+      goType(type){
+      console.log(type)
+      // let url='../collect/main?'+type.zhuan;
+      let url = type.url;
+      mpvue.navigateTo( {url} )
+      }
   },
 
   created () {
