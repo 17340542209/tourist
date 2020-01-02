@@ -12,38 +12,37 @@
       </swiper-item>
     </block>
     </swiper>
-  <i-grid i-class="no-border">
+    <i-grid i-class="no-border">
     <i-grid-item @click="goType(grid)" v-for="grid in grids" :key="grid" i-class="no-border">
-        <i-grid-icon>
-            <image :src="grid.image" />
-        </i-grid-icon>
-        <i-grid-label>{{grid.title}}</i-grid-label>
+    <i-grid-icon>
+      <image :src="grid.image" />
+    </i-grid-icon>
+    <i-grid-label>{{grid.title}}</i-grid-label>
     </i-grid-item>
-  </i-grid>
+    </i-grid>
 
   <i-panel :title="title_name">
     <block v-for="item in top" :key="item">
-      <i-card i-class="split" :title="item.name" :thumb="item.image">
-        <view slot="footer">{{item.keyWord}}</view>
-        <view slot="content">{{item.content}}</view>
-      </i-card>
-      <view class="tool">
+    <i-card i-class="split" :title="item.name" :thumb="item.image">
+      <view slot="footer">{{item.keyWord}}</view>
+      <view slot="content">{{item.content}}</view>
+    </i-card>
+    <view class="tool">
       <view class="tool-item" @click='onUpTop(item)' data-post-id="post.postId">
         <image v-show="item.upStatus" src="/static/images/dianzan.png"></image>
-      <image v-show="item.upStatus2" src="/static/images/_dianzan.png"></image>
-      <i-toast id="toast" />
+        <image v-show="item.upStatus2" src="/static/images/_dianzan.png"></image>
+        <i-toast id="toast" />
       </view>
       <view class="tool-item comment" catchtap='onCommentTap' data-post-id="post.postId">
         <image src="/static/images/pinlun.png"></image>
-        
       </view>
       <view class="tool-item" @click='on(item)' data-post-id="post.postId">
-      <image v-show="item.collectionStatus" src="/static/images/collect.png"></image>
-      <image v-show="item.collectionStatus2" src="/static/images/_collect.png"></image>
-      <i-toast id="toast" />
+        <image v-show="item.collectionStatus" src="/static/images/collect.png"></image>
+        <image v-show="item.collectionStatus2" src="/static/images/_collect.png"></image>
+        <i-toast id="toast" />
       </view>
     </view>
-  </block>
+    </block>
   </i-panel>
   </div>
 </template>
@@ -79,68 +78,31 @@ export default {
   
   methods: {
    goType(type) {
-     console.log(type)
-     let url='../list/main?type=' + type.title
-     mpvue.navigateTo({ url })
+    console.log(type)
+    let url='../list/main?type=' + type.title
+    mpvue.navigateTo({ url })
    },
-   //更新本地的点赞、评论信息、收藏、阅读量
-  updatePostData(category){
-    var itemData = this.getPostItemById(),
-     postData = itemData.data,
-    allPostData = this.getAllPostData();
-    switch(category){
-        case 'collect':
-          //处理收藏
-          if(!postData.collectionStatus){
-            //如果当前状态是未收藏
-            postData.collectionNum++;
-            postData.collectionStatus = true;
-          }else{
-            //如果当前状态是已收藏
-            postData.collectionNum--;
-            postData.collectionStatus = false;
-          }
-          break;
-        case 'up':
-          if(!postData.upStatus){
-            postData.upNum++;
-            postData.upStatus = true;
-            }else{
-              postData.upNum--;
-              postData.upStatus = false;
-            }
-            break;
-        default:break;
-    }
-    //更新缓存数据库  
-    allPostData[itemData.index] = postData;
-    this.execSetStorageSync(allPostData);
-    return postData;
-  },   
-    collect(){
-      return this.updatePostData('collect');
-    },
-
+   
   on(item) {
-      item.collectionStatus = !item.collectionStatus;
-      item.collectionStatus2 = !item.collectionStatus2;
-      this.handleMask(item);
+    item.collectionStatus = !item.collectionStatus;
+    item.collectionStatus2 = !item.collectionStatus2;
+    this.handleMask(item);
   },
   handleMask (item) {
     $Toast({
-        content:item.collectionStatus? '取消收藏':'收藏成功',
-        type: 'success',
-        duration: 0,
-        mask: false
+      content:item.collectionStatus? '取消收藏':'收藏成功',
+      type: 'success',
+      duration: 0,
+      mask: false
     });
     setTimeout(() => {
-        $Toast.hide();
+      $Toast.hide();
     }, 5000);
   },
   onUpTop(item) {
-       item.upStatus = !item.upStatus;
-       item.upStatus2 = !item.upStatus2;
-       this.handleMask2(item);
+      item.upStatus = !item.upStatus;
+      item.upStatus2 = !item.upStatus2;
+      this.handleMask2(item);
     },
   handleMask2 (item) {
     $Toast({
@@ -155,14 +117,14 @@ export default {
   },
   updates(name){
       this.$router.push({
-          path:'/collect',
-          name:'collect',
-            params:{
-            name : name,
-          }
+        path:'/collect',
+        name:'collect',
+        params:{
+        name : name,
+        }
       })
     }
-}
+ }
 }
 </script>
 
@@ -188,25 +150,24 @@ export default {
   transform: scale(.85);
 }
 .toast {
-            position: fixed;
-            z-index: 2000;
-            left: 50%;
-            top:60%;
-            transition:all .5s;
-            -webkit-transform: translateX(-50%) translateY(-50%);
-               -moz-transform: translateX(-50%) translateY(-50%);
-                -ms-transform: translateX(-50%) translateY(-50%);
-                 -o-transform: translateX(-50%) translateY(-50%);
-                    transform: translateX(-50%) translateY(-50%);
-            text-align: center;
-            border-radius: 5px;
-            color:#FFF;
-            background: rgba(17, 17, 17, 0.7);
-            height: 45px;
-            line-height: 45px;
-            padding: 0 15px;
-          
-        }
+  position: fixed;
+  z-index: 2000;
+  left: 50%;
+  top:60%;
+  transition:all .5s;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  text-align: center;
+  border-radius: 5px;
+  color:#FFF;
+  background: rgba(17, 17, 17, 0.7);
+  height: 45px;
+  line-height: 45px;
+  padding: 0 15px;
+}
 div >>> .no-border {
   border-width: 0pt;
 }

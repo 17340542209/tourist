@@ -17,8 +17,8 @@ export default {
   },
 
   onLoad(option){
-  this.list  = require('@/data/' + option.type + '.json')
-  console.log(this.list)
+    this.list  = require('@/data/' + option.type + '.json')
+    console.log(this.list)
   },
 
   methods: {
@@ -27,7 +27,7 @@ export default {
 
   created () {
   
-}
+  }
 }
 </script>
 

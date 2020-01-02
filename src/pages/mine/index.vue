@@ -8,13 +8,13 @@
     </view>
   <block  v-for=" item in userListInfo" :key="item">
     <view class="b2" @click="goType(item)">
-        <view class="b3" >
-          <image :src="item.image"></image>
-        </view>
-        <view class="b4">
-          <view>{{item.text}}</view>
-        </view>
-        <view class="listimage" style='background-image:url(/static/images/jiantou.png);'></view>
+      <view class="b3" >
+        <image :src="item.image"></image>
+      </view>
+      <view class="b4">
+        <view>{{item.text}}</view>
+      </view>
+      <view class="listimage" style='background-image:url(/static/images/jiantou.png);'></view>
     </view>
   </block>
   </div>
@@ -34,17 +34,17 @@ export default {
   },
 
   methods: {
-      goType(type){
-      console.log(type)
-      // let url='../collect/main?'+type.zhuan;
-      let url = type.url;
-      mpvue.navigateTo( {url} )
-      }
-  },
+    goType(type){
+    console.log(type)
+    // let url='../collect/main?'+type.zhuan;
+    let url = type.url;
+    mpvue.navigateTo( {url} )
+  }
+},
 
   created () {
   
-}
+ }
 }
 
 </script>

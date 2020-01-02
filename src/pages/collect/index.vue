@@ -1,13 +1,20 @@
 <template>
     <div>
-        <!-- <i-panel title="标题"  v-for="item in info" :key="item">
-           <view style="padding: 15px;">{{item.name}}</view>
-        </i-panel> -->
-        dfrb 
+      <i-panel >
+        <view style="padding: 15px;">{{title}}</view>
+      </i-panel>
     </div>
 </template>
 
 <script>
-
-
+export default {
+  data () {
+    return {
+      title:wx.getStorageSync('title')
+    }
+  },
+  onload:function(options){
+    console.log (this.data.title)
+  }
+}
 </script>
