@@ -91,12 +91,12 @@ export default {
     })
   },
   goType(type) {
-    console.log(type)
+    let url = ''
     if(type.title!='地图'){
-      let url='../list/main?type=' + type.title
+       url='../list/main?type=' + type.title
     }
     else{
-      let url='../map/main'
+      url='../map/main'
     }
     mpvue.navigateTo({ url })
   },

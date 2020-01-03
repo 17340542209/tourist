@@ -35,7 +35,6 @@ export default {
 
   methods: {
     goType(type){
-    console.log(type)
     let url = type.url;
     mpvue.navigateTo( {url} )
     }

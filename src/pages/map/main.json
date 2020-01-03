@@ -1,0 +1,12 @@
+{ 
+    "navigationBarTitleText": "Be Your Eyes",
+    "usingComponents": {
+        "i-grid": "../../../static/dist/grid/index",
+        "i-grid-item": "../../../static/dist/grid-item/index",
+        "i-grid-icon": "../../../static/dist/grid-icon/index",
+        "i-grid-label": "../../../static/dist/grid-label/index",
+        "i-panel": "../../../static/dist/panel/index",
+        "i-card": "../../../static/dist/card/index",
+        "i-toast": "../../../static/dist/toast/index"
+    }
+}

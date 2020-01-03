@@ -23,18 +23,16 @@ export default {
 
 methods: {
     changeTitle(event) {
-      console.log(event)
       this.title = event.mp.detail.detail.value
     },
     changeKey(event) {
-      console.log(event)
       this.key = event.mp.detail.detail.value
     },
     changeContent(event) {
-      console.log(event)
       this.content = event.mp.detail.detail.value
     },    
     handleClick() {
+      // var info = res.data.data;
       wx.setStorage({
         key:"key",
         data:"this.title"
@@ -47,10 +45,7 @@ methods: {
           image: 'cloud://edu-868a10.6564-edu-868a10/food/4.png'
         }
         wx.cloud.callFunction({ name: 'new_spot', data: event }).then(
-          res => {
-            console.log(res)
-          }
-        )
+          res => {})
         $Toast({
           content: '分享成功',
           type: 'success'
