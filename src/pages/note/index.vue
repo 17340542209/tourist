@@ -10,11 +10,19 @@
 export default {
   data () {
     return {
-      title:wx.getStorageSync('title')
+     title:""
     }
   },
-  onload:function(options){
-    console.log (this.data.title)
+
+ methods: {
+  onload:function(option){
+    wx.getStorage({
+      key: 'key',
+       function(res){
+          console.log(res.data)
+      },
+    })
   }
+},
 }
 </script>

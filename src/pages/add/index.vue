@@ -33,12 +33,12 @@ methods: {
     changeContent(event) {
       console.log(event)
       this.content = event.mp.detail.detail.value
-    },
+    },    
     handleClick() {
-      wx.setStorageSync('title',e.detail.title)
-      this.setdata({
-        title:e.detail.title
-      })
+      wx.setStorage({
+        key:"key",
+        data:"this.title"
+      })  
       if (this.title && this.key && this.content) {
         let event = {
           title: this.title,
@@ -62,7 +62,7 @@ methods: {
         });
       }
     }
-  },
+  }
 }
 </script>
 

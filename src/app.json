@@ -4,7 +4,9 @@
     "pages/list/main",
     "pages/add/main",
     "pages/mine/main",
-    "pages/collect/main"
+    "pages/collect/main",
+    "pages/comment/main",
+    "pages/map/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

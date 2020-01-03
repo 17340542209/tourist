@@ -33,7 +33,7 @@
         <image v-show="item.upStatus2" src="/static/images/_dianzan.png"></image>
         <i-toast id="toast" />
       </view>
-      <view class="tool-item comment" catchtap='onCommentTap' data-post-id="post.postId">
+      <view class="tool-item comment"  @click='clickHandle' data-post-id="post.postId">
         <image src="/static/images/pinlun.png"></image>
       </view>
       <view class="tool-item" @click='on(item)' data-post-id="post.postId">
@@ -49,6 +49,7 @@
 
 <script>
  const { $Toast } = require('../../../static/dist/base/index')
+ import card from '@/components/card'
 export default {
   data () {
     return {
@@ -75,14 +76,30 @@ export default {
      duration:1000,
     }
   },
-  
   methods: {
-   goType(type) {
-    console.log(type)
-    let url='../list/main?type=' + type.title
+  bindViewTap () {
+  const url = '../logs/main'
+  if (mpvuePlatform === 'wx') {
+    mpvue.switchTab({ url })
+  } else {
     mpvue.navigateTo({ url })
-   },
-   
+  }
+},
+  clickHandle () {
+    wx.navigateTo({
+      url:'../comment/main'
+    })
+  },
+  goType(type) {
+    console.log(type)
+    if(type.title!='地图'){
+      let url='../list/main?type=' + type.title
+    }
+    else{
+      let url='../map/main'
+    }
+    mpvue.navigateTo({ url })
+  },
   on(item) {
     item.collectionStatus = !item.collectionStatus;
     item.collectionStatus2 = !item.collectionStatus2;
@@ -97,13 +114,13 @@ export default {
     });
     setTimeout(() => {
       $Toast.hide();
-    }, 5000);
+    }, 1000);
   },
   onUpTop(item) {
-      item.upStatus = !item.upStatus;
-      item.upStatus2 = !item.upStatus2;
-      this.handleMask2(item);
-    },
+    item.upStatus = !item.upStatus;
+    item.upStatus2 = !item.upStatus2;
+    this.handleMask2(item);
+  },
   handleMask2 (item) {
     $Toast({
         content:item.upStatus? '取消点赞':'点赞成功',
@@ -113,17 +130,17 @@ export default {
     });
     setTimeout(() => {
         $Toast.hide();
-    }, 5000);
+    }, 1000);
   },
   updates(name){
-      this.$router.push({
-        path:'/collect',
-        name:'collect',
-        params:{
-        name : name,
-        }
-      })
-    }
+    this.$router.push({
+      path:'/collect',
+      name:'collect',
+      params:{
+      name : name,
+      }
+    })
+  }
  }
 }
 </script>

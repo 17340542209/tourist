@@ -26,9 +26,9 @@ export default {
   data () {
     return {
       userListInfo:[
-        {image:"/static/images/biji.png",text:"我的笔记",zhuan:"file",url: "../collect/main"},
-        {image:"/static/images/zan.png",text:"我的赞",zhuan:"like"},
-        {image:"/static/images/shoucang.png",text:"我的收藏",zhuan:"collect"},
+        {image:"/static/images/biji.png",text:"我的笔记",zhuan:"file",url: "../note/main"},
+        {image:"/static/images/zan.png",text:"我的赞",zhuan:"like",url: "../like/main"},
+        {image:"/static/images/shoucang.png",text:"我的收藏",zhuan:"collect",url: "../collect/main"},
         ]
    }
   },
@@ -36,11 +36,10 @@ export default {
   methods: {
     goType(type){
     console.log(type)
-    // let url='../collect/main?'+type.zhuan;
     let url = type.url;
     mpvue.navigateTo( {url} )
-  }
-},
+    }
+  },
 
   created () {
   
