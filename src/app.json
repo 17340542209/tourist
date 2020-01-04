@@ -6,7 +6,9 @@
     "pages/mine/main",
     "pages/collect/main",
     "pages/comment/main",
-    "pages/map/main"
+    "pages/map/main",
+    "pages/like/main",
+    "pages/note/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -34,8 +34,8 @@ methods: {
     handleClick() {
       // var info = res.data.data;
       wx.setStorage({
-        key:"key",
-        data:"this.title"
+        key:"title",
+        data:this.title
       })  
       if (this.title && this.key && this.content) {
         let event = {
