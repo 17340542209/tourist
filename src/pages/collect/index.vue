@@ -1,7 +1,5 @@
 <template>
     <div>
-      <i-panel v-for="title in titles" :key="title" >
-        <view style="padding: 15px;">{{title.title}}</view>
-      </i-panel>
+     <h1 style="text-align:center;">你还没有收藏哦!快去看看吧</h1>
     </div>
 </template>

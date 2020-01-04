@@ -8,7 +8,7 @@
     >
     <block v-for="img in imgUrls" :key="img">
       <swiper-item>
-        <image :src="img" style="width:1000px height:1000px" />
+        <image :src="img" style="width:50px height:50px" />
       </swiper-item>
     </block>
     </swiper>
@@ -100,48 +100,54 @@ export default {
     }
     mpvue.navigateTo({ url })
   },
-  on(item) {
-    item.collectionStatus = !item.collectionStatus;
-    item.collectionStatus2 = !item.collectionStatus2;
-    this.handleMask(item);
-  },
-  handleMask (item) {
-    $Toast({
-      content:item.collectionStatus? '取消收藏':'收藏成功',
-      type: 'success',
-      duration: 0,
-      mask: false
-    });
-    setTimeout(() => {
-      $Toast.hide();
-    }, 1000);
-  },
-  onUpTop(item) {
-    item.upStatus = !item.upStatus;
-    item.upStatus2 = !item.upStatus2;
-    this.handleMask2(item);
-  },
-  handleMask2 (item) {
-    $Toast({
-        content:item.upStatus? '取消点赞':'点赞成功',
+    // onload(){
+    //     wx.setStorage({
+    //       key:"position",
+    //       data:this.item.upStatus,
+    //     })  
+    // },
+    on(item) {
+      item.collectionStatus = !item.collectionStatus;
+      item.collectionStatus2 = !item.collectionStatus2;
+      this.handleMask(item);
+    },
+    handleMask (item) {
+      $Toast({
+        content:item.collectionStatus? '取消收藏':'收藏成功',
         type: 'success',
         duration: 0,
         mask: false
-    });
-    setTimeout(() => {
+      });
+      setTimeout(() => {
         $Toast.hide();
-    }, 1000);
-  },
-  updates(name){
-    this.$router.push({
-      path:'/collect',
-      name:'collect',
-      params:{
-      name : name,
-      }
-    })
+      }, 1000);
+    },
+    onUpTop(item) {
+      item.upStatus = !item.upStatus;
+      item.upStatus2 = !item.upStatus2;
+      this.handleMask2(item);
+    },
+    handleMask2 (item) {
+      $Toast({
+          content:item.upStatus? '取消点赞':'点赞成功',
+          type: 'success',
+          duration: 0,
+          mask: false
+      });
+      setTimeout(() => {
+          $Toast.hide();
+      }, 1000);
+    },
+    updates(name){
+      this.$router.push({
+        path:'/collect',
+        name:'collect',
+        params:{
+        name : name,
+        }
+      })
+    }
   }
- }
 }
 </script>
 
