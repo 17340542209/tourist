@@ -23,7 +23,7 @@
     "build": "node build/build.js wx"
   },
   "dependencies": {
-    "ajv": "^6.0.0",
+    "ajv": "^6.12.3",
     "imagemin": "^5.0.0",
     "mpvue": "^2.0.0",
     "vuex": "^3.0.1"
